@@ -26,7 +26,7 @@ class BrandRequest extends FormRequest
     public function rules()
     {
         $rules =  [
-            'brand_name' => 'required',
+            'name' => 'required',
             'image' => 'required|string',
             'extension' => 'required|'. Rule::in(config('rules.brand.allowed_file_extension')),
         ];

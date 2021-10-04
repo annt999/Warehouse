@@ -38,6 +38,7 @@ let ChangePasswordClass = {
 let ForgetPasswordClass = {
     submit: function (e) {
         e.preventDefault();
+        console.log(123)
         $(".error-message").text('')
         let urlForgotPassword = $forgetPasswordForm.attr('action');
         let dataInput = $forgetPasswordForm.serialize();

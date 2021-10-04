@@ -8,14 +8,14 @@
         <th>No.</th>
         <th>Location name</th>
         <th>Description</th>
-=        <th>Action</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
     @foreach($locations as $location)
         <tr data-id="{{$location->id}}">
             <td>{{ ($locations ->currentpage()-1) * $locations ->perpage() + $loop->index + 1 }}</td>
-            <td>{{ $location->location_name }}</td>
+            <td>{{ $location->name }}</td>
             <td>{{ $location->description }}</td>
             <td>
                 <button class="btn btn-danger btn-edit"><i class="fas fa-edit"></i></button>

@@ -6,38 +6,29 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{!! __('view.reset_password.reset_password') !!}</title>
-    <link rel="stylesheet" href="{{ asset('libs/font-awesome/css/all.css')}} ">
     <link rel="stylesheet" href="{{ asset('libs/font-awesome/js/all.js')}} ">
-    <link rel="stylesheet" href="{{ asset('libs/bootstrap/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{ asset('libs/sweet-alert/sweetalert2.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/login.css')}}">
 </head>
-<body class="login-page">
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-12 col-sm-6 col-md-3">
-            <form class="form-login reset-password-form" action="{!! route('reset.password.post') !!}" method="post">
-                @csrf
-                <div class="form-group">
-                    <h3>
-                        {{__('view.reset_password.reset_password')}}
-                    </h3>
-                </div>
-                <input type="hidden" name="token" value="{{$token}}">
-                <div class="form-group">
-                    <label>{{__('view.reset_password.new_password')}}</label>
-                    <input type="password" name="password" class="form-control" placeholder="{{__('view.reset_password.new_password')}}">
-                    <div class="text-danger d-none error-message" id="password_error"></div>
-                </div>
-                <div class="form-group">
-                    <label>{{__('view.reset_password.confirm_password')}}</label>
-                    <input type="password" name="password_confirmation" class="form-control" placeholder="{{__('view.reset_password.confirm_password')}}">
-                    <div class="text-danger d-none error-message" id="password_confirmation_error"></div>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block btn-reset-password">Submit</button>
-            </form>
+<body>
+<div class="container">
+    <div class="top-row"></div>
+    <form class="reset-password-form" action="{!! route('reset.password.post') !!}" method="post">
+        @csrf
+        <div>
+            <h3>
+                {{__('view.reset_password.reset_password')}}
+            </h3>
         </div>
-    </div>
+        <input type="hidden" name="token" value="{{$token}}">
+        <input type="password" name="password" placeholder="{{__('view.reset_password.new_password')}}">
+        <div class="text-danger d-none error-message" id="password_error"></div>
+        <input type="password" name="password_confirmation" placeholder="{{__('view.reset_password.confirm_password')}}">
+        <div class="text-danger d-none error-message" id="password_confirmation_error"></div>
+        <div class="btn-box">
+            <button type="submit" class="btn-reset-password">Submit</button>
+        </div>
+    </form>
 </div>
 <script>
     var urlLogin = '{!! route('auth.login') !!}'

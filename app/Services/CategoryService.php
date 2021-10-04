@@ -19,16 +19,18 @@ class CategoryService
     }
     public static function store(CategoryRequest $request)
     {
-        $dataInsert = $request->only(['category_name', 'level', 'category_id']);
-        \Log::error($dataInsert);
+        $dataInsert = $request->only(['name', 'level', 'parent_id']);
+        $dataInsert['ware_house_id'] = auth()->user()->ware_house_id;
         return CategoryRepository::store($dataInsert);
     }
     public static function update(Category $category,CategoryRequest $request)
     {
-        $dataUpdate = $request->only(['category_name', 'level', 'category_id']);
-        \Log::error($dataUpdate);
-        if (!CategoryRepository::update($category, $dataUpdate))
-        {
+        if ($category->parent_id) {
+            $dataUpdate = $request->only(['name', 'parent_id']);
+        } else {
+            $dataUpdate = $request->only(['name']);
+        }
+        if (!CategoryRepository::update($category, $dataUpdate)) {
             return ['error' => __('message.server_error')];
         }
         return [

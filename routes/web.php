@@ -6,7 +6,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WarehouseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,16 +21,25 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Route::get('/home', function (){
+//   return view('layouts.home');
+//})->name('home');
 Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login.post');
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
+
 
 //forget-password
 Route::get('/forget-password', [ForgotPasswordController::class, 'forgetPassword'])->name('forget.password.get');
 Route::post('/forget-password', [ForgotPasswordController::class, 'forgetPassword'])->name('forget.password.post');
 Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
+//register
+Route::get('/register', [WarehouseController::class, 'create'])->name('warehouse.create');
+Route::post('/warehouse/store', [WarehouseController::class, 'store'])->name('warehouse.store');
+
 
 
 Route::group(['middleware' => ['auth', 'user.active']], function () {
@@ -40,6 +51,10 @@ Route::group(['middleware' => ['auth', 'user.active']], function () {
     Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
     Route::patch('/user/update', [UserController::class, 'update'])->name('user.update');
+
+    //Warehouses
+
+
 
     //Brand
     Route::get('/brand', [BrandController::class, 'index'])->name('brand.index');
@@ -58,6 +73,14 @@ Route::group(['middleware' => ['auth', 'user.active']], function () {
     Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
     Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
     Route::patch('/category/update', [CategoryController::class, 'update'])->name('category.update');
+
+    //Product
+    Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+    Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::get('/product/detail/{id}', [ProductController::class, 'detail'])->name('product.detail');
+    Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
+    Route::patch('/product/update', [ProductController::class, 'update'])->name('product.update');
+
     //Auth
     Route::get('/change-password', [UserController::class, 'getChangePassword'])->name('password.change.get');
     Route::post('/change-password', [UserController::class, 'changePassword'])->name('password.change.post');

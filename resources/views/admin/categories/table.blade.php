@@ -16,7 +16,7 @@
     @foreach($categories as $category)
         <tr data-id="{{$category->id}}">
             <td>{{ ($categories ->currentpage()-1) * $categories ->perpage() + $loop->index + 1 }}</td>
-            <td>{{ $category->category_name }}</td>
+            <td>{{ $category->name }}</td>
             <td>{{$levelOptions[$category->level]}}</td>
             @if($category->category_id)
             <td>{{$categoryFatherOptions[$category->category_id]->category_name}}</td>

@@ -11,9 +11,9 @@
                     <div class="form-group">
                         <label for="link"> Brand name<em class="required">*</em></label>
                         <div>
-                            <input class="form-control" id="brand_name" name="brand_name">
+                            <input class="form-control" id="brand_name" name="name">
                         </div>
-                        <div class="text-danger d-none error-message" id="brand_name_error"></div>
+                        <div class="text-danger d-none error-message" id="name_error"></div>
                     </div>
 
                     <div class="form-group">

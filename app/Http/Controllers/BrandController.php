@@ -13,7 +13,6 @@ class BrandController extends Controller
     public static function index(Request $request)
     {
         if ($request->ajax()) {
-            \Log::error(BrandService::getList());
             return [
                 'success' => __('message.create_user_successfully'),
                 'view' => \View::make('admin.brands.table',

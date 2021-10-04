@@ -30,12 +30,15 @@ class UserRepository
 
     public static function getList()
     {
-        return User::query()->where('is_active', config('common.active'))->paginate(config('common.records_per_page'));
+        return User::query()->where('is_active', config('common.active'))
+            ->where('ware_house_id', auth()->user()->ware_house_id)
+            ->paginate(config('common.records_per_page'));
     }
 
     public static function store(array $dataInsert)
     {
         $dataInsert['password'] = \Hash::make('password');
+        $dataInsert['ware_house_id'] = auth()->user()->ware_house_id;
         DB::beginTransaction();
         try {
             $user = User::create($dataInsert);

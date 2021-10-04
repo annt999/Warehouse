@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeColumnDescriptionBrandsTable extends Migration
+class CreateWareHousesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class ChangeColumnDescriptionBrandsTable extends Migration
      */
     public function up()
     {
-        Schema::table('brands', function (Blueprint $table) {
-            $table->text('description')->nullable()->change();
+        Schema::create('ware_houses', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->tinyInteger('is_active')->default(config('common.active'));
+            $table->timestamps();
         });
     }
 
@@ -25,6 +28,6 @@ class ChangeColumnDescriptionBrandsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('ware_houses');
     }
 }

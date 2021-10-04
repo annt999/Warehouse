@@ -30,6 +30,8 @@ class BrandRepository
             DB::commit();
             return $brand;
         } catch (\Exception $ex) {
+            Log::error($ex);
+
             DB::rollBack();
             return null;
         }

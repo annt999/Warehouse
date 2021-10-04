@@ -19,18 +19,20 @@ class LocationRepository
     }
     public static function getList()
     {
-        return Location::query()->paginate(config('common.records_per_page'));
+        return Location::query()
+            ->where('ware_house_id', auth()->user()->ware_house_id)
+            ->paginate(config('common.records_per_page'));
     }
 
     public static function store(array $dataInsert)
     {
+        Log::error($dataInsert);
         DB::beginTransaction();
         try {
             $location = Location::create($dataInsert);
             DB::commit();
             return $location;
         } catch (\Exception $ex) {
-            Log::error($ex);
             DB::rollBack();
             return null;
         }

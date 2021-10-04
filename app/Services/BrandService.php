@@ -19,7 +19,8 @@ class BrandService
     }
     public static function store(Request $request)
     {
-        $dataInsert = $request->only(['brand_name', 'description', 'image']);
+        $dataInsert = $request->only(['name', 'description', 'image']);
+        $dataInsert['ware_house_id'] = auth()->user()->ware_house_id;
         $image_data = $request->image;
         $image_array_1 = explode(";", $image_data);
         $image_array_2 = explode(",", $image_array_1[1]);

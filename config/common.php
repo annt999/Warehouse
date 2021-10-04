@@ -7,9 +7,21 @@ return [
     'is_trading' => 1,
     'records_per_page' => 5,
 
+    'paid' => [
+        'paid' => 1,
+        'unpaid' => 2,
+        'not_paid_in_full' => 3
+    ],
+
     'role' => [
-        'admin' => 1,
-        'employee' => 2
+        'storekeeper' => 1,
+        'employee' => 2,
+        'admin' => 3
+    ],
+    'gender' => [
+        'male' => 1,
+        'female' => 2,
+        'other' => 3,
     ],
 
     'category_level' => [
@@ -17,6 +29,7 @@ return [
         'father' => 2
     ],
 
-    'urlImageBase' => 'storage/images/'
+    'urlImageBase' => 'storage/images/',
+    'domain' => 'http://127.0.0.1:8000',
 
 ];

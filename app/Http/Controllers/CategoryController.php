@@ -13,7 +13,6 @@ class CategoryController extends Controller
     public static function index(Request $request)
     {
         if ($request->ajax()) {
-            \Log::error(CategoryService::getList());
             return [
                 'success' => __('message.create_user_successfully'),
                 'view' => \View::make('admin.categories.table',
@@ -51,12 +50,18 @@ class CategoryController extends Controller
                     'categories' => CategoryRepository::getList(),
                     'levelOptions' => View::getListCategoryLevelOptions(),
                     'categoryFatherOptions' => CategoryService::getCategoryFathers()->keyBy('id')
-                ]
-            )->render()
+                ])->render(),
+            'form' => \View::make(
+                'admin.categories.form',
+                [
+                    'levelOptions' => View::getListCategoryLevelOptions(),
+                    'categoryFatherOptions' => CategoryService::getCategoryFathers()->keyBy('id')
+                ])->render()
         ];
     }
     public static function update(CategoryRequest $request)
     {
+        \Log::error($request);
         $categoryId = $request->get('id');
         if (!($category = CategoryService::findById($categoryId))) {
             return ['error' => __('message.category_is_not_exist')];

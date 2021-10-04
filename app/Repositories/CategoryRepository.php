@@ -51,6 +51,6 @@ class CategoryRepository
     }
     public static function getCategoryFathers()
     {
-        return Category::query()->select('id', 'category_name')->where('level', '=', config('common.category_level.father'))->get();
+        return Category::query()->select('id', 'name')->where('level', '=', config('common.category_level.father'))->get();
     }
 }

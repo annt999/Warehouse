@@ -12,8 +12,9 @@ class Brand extends Model
     protected $table = 'brands';
 
     protected $fillable = [
-        'brand_name',
+        'name',
         'description',
         'image',
+        'ware_house_id'
     ];
 }

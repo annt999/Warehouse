@@ -18,12 +18,14 @@ class LocationService
     }
     public static function store(LocationRequest $request)
     {
-        $dataInsert = $request->only(['location_name', 'description']);
+        $dataInsert = $request->only(['name', 'description']);
+        $dataInsert['ware_house_id'] = auth()->user()->ware_house_id;
+        \Log::error($dataInsert);
         return LocationRepository::store($dataInsert);
     }
     public static function update(Location $location,LocationRequest $request)
     {
-        $dataUpdate = $request->only(['location_name', 'description']);
+        $dataUpdate = $request->only(['name', 'description']);
         if (!LocationRepository::update($location, $dataUpdate))
         {
             return ['error' => __('message.server_error')];

@@ -17,11 +17,12 @@ class CreateCustomersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone_number');
-            $table->date('birthday');
-            $table->string('current_debt');
-            $table->string('total_transaction_amount');
-            $table->string('address');
-            $table->string('gender');
+            $table->string('email');
+            $table->date('birthday')->nullable();
+            $table->string('address')->nullable();
+            $table->tinyInteger('gender');
+            $table->unsignedBigInteger('ware_house_id');
+            $table->foreign('ware_house_id')->references('id')->on('ware_houses');
             $table->timestamps();
         });
     }

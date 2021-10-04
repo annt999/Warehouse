@@ -25,7 +25,7 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_name' => 'required',
+            'name' => 'required',
             'level' => ['required', Rule::in(array_values(config('common.category_level')))],
 
         ];

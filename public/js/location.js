@@ -2,7 +2,7 @@ let $locationPage = $('.location-page');
 let $tableLocations = $('#tableLocations');
 let $modalForm = $locationPage.find('#location-form');
 let $locationId = $modalForm.find('#location_id');
-let $locationName = $modalForm.find('#location_name');
+let $locationName = $modalForm.find('#name');
 let $locationDescription = $modalForm.find('#description');
 
 $(document).ready(function () {
@@ -91,7 +91,7 @@ let locationClass = {
 
     fillFormData: function (location = {}) {
         $(".error-message").text('');
-        $locationName.val(location['location_name'] || '');
+        $locationName.val(location['name'] || '');
         $locationDescription.val(location['description' || '']);
         $locationId.val(location['id'] || '');
         if (location['id']) {
@@ -106,7 +106,7 @@ let locationClass = {
         return {
             id: $locationId.val(),
             _token: _token,
-            location_name: $locationName.val(),
+            name: $locationName.val(),
             description: $locationDescription.val(),
         }
     },

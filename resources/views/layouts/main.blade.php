@@ -19,29 +19,44 @@
             <li>
                 <a href="#">Home</a>
             </li>
-            <li class="{{ Route::is('user.*') ? 'route-active' : '' }}">
-                <a href="{{route('user.index')}}">
-                        Users
-                </a>
-            </li>
-            <li>
-                <a href="#">Products</a>
-            </li>
-            <li>
-                <a href="#">Orders</a>
-            </li>
-            <li class="{{ Route::is('location.*') ? 'route-active' : '' }}">
-                <a href="{{route('location.index')}}">Locations</a>
-            </li>
-            <li class="{{ Route::is('brand.*') ? 'route-active' : '' }}">
-                <a href="{{route('brand.index')}}">Brands</a>
-            </li>
-            <li class="{{ Route::is('category.*') ? 'route-active' : '' }}">
-                <a href="{{route('category.index')}}">Categories</a>
-            </li>
-            <li>
-                <a href="#">Customers</a>
-            </li>
+            @if(auth()->check())
+                @if(auth()->user()->isAdmin())
+                    <li>
+                        <a href="#">Warehouses management</a>
+                    </li>
+                @else
+                    <li class="{{ Route::is('user.*') ? 'route-active' : '' }}">
+                        <a href="{{route('user.index')}}">
+                            Employees
+                        </a>
+                    </li>
+                    <li class="{{ Route::is('product.*') ? 'route-active' : '' }}">
+                        <a href="{{route('product.index')}}">Products</a>
+                    </li>
+                    <li>
+                        <a href="#">Orders</a>
+                    </li>
+                    <li class="{{ Route::is('location.*') ? 'route-active' : '' }}">
+                        <a href="{{route('location.index')}}">Locations</a>
+                    </li>
+                    <li class="{{ Route::is('brand.*') ? 'route-active' : '' }}">
+                        <a href="{{route('brand.index')}}">Brands</a>
+                    </li>
+                    <li class="{{ Route::is('category.*') ? 'route-active' : '' }}">
+                        <a href="{{route('category.index')}}">Categories</a>
+                    </li>
+                    <li>
+                        <a href="#">Customers</a>
+                    </li>
+                @endif
+            @else
+                <li class="{{ Route::is('warehouse.*') ? 'route-active' : '' }}">
+                    <a href="{{route('warehouse.create')}}">Create warehouse</a>
+                </li>
+                <li>
+                    <a href="#">Login</a>
+                </li>
+            @endif
         </ul>
     </nav>
     <div id="content-wrapper">
@@ -50,7 +65,9 @@
                 <button type="button" id="sidebarCollapse" class="btn btn-info">
                     <i class="fas fa-align-left"></i>
                 </button>
+                <span style="color: #247a8b; font-weight: 900">{{ $warehouse_name }}</span>
             </li>
+            @if(auth()->check())
             <li class="nav-item">
                 <div class="user-panel d-flex">
                     <div class="image">
@@ -67,6 +84,7 @@
                     </div>
                 </div>
             </li>
+            @endif
         </ul>
         <div class="content">
             <div class="content-header">

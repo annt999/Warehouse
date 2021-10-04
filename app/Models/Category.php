@@ -12,9 +12,11 @@ class Category extends Model
     protected $table = 'categories';
 
     protected $fillable = [
-        'category_name',
+        'name',
+        'parent_id',
         'description',
         'level',
-        'category_id'
+        'category_id',
+        'ware_house_id',
     ];
 }

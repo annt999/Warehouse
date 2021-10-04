@@ -21,9 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('warehouse_id');
             $table->tinyInteger('is_active')->default(config('common.active'));
             $table->unsignedBigInteger('role_id')->default(config('common.role.employee'));
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('warehouse_id')->references('id')->on('ware_houses');
             $table->rememberToken();
             $table->timestamps();
         });

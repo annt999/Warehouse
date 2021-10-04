@@ -45,7 +45,7 @@ window.swalSuccess = function (message) {
     return Swal.fire({
         icon: "success",
         text: message,
-        confirmButtonText: lang.lblOk,
+        confirmButtonText: "Ok",
     });
 }
 
@@ -56,7 +56,7 @@ window.swalError = function (message) {
     return Swal.fire({
         icon: "error",
         text: message,
-        confirmButtonText: lang.lblOk,
+        confirmButtonText: "Ok",
     });
 }
 

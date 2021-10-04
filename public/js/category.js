@@ -1,10 +1,11 @@
 let $categoryPage = $('.category-page');
 let $tableCategories = $('#tableCategories');
 let $modalForm = $categoryPage.find('#category-form');
+let $formWrap = $categoryPage.find('#category-form-wrap')
 let $categoryId = $modalForm.find('#category_id');
-let $categoryName = $modalForm.find('#category_name');
+let $categoryName = $modalForm.find('#name');
 let $categoryLevel = $modalForm.find('#category_level');
-let $categoryFather = $modalForm.find('#category_father');
+let $categoryFather = $modalForm.find('#parent_id');
 let $categoryFatherWrap = $modalForm.find('.category_fathers_wrap');
 
 $(document).ready(function () {
@@ -12,7 +13,7 @@ $(document).ready(function () {
     $categoryPage.on('click', '.btn-edit', CategoryClass.edit);
     $categoryPage.on('click', '.btn-save', CategoryClass.store);
     $categoryPage.on('click', '.btn-update', CategoryClass.update);
-    $categoryPage.on('change', '#category_level', CategoryClass.showCategoryFatherOptions)
+    $categoryPage.on('change', '#category_level', CategoryClass.showCategoryFatherOptions);
     $categoryPage.on('click', '.pagination a', function (e) {
         e.preventDefault();
         var page = $(this).attr('href').split('page=')[1];
@@ -36,8 +37,14 @@ let CategoryClass = {
                 return swalError(response.error)
             }
             if (response.category) {
+                $categoryFatherWrap.show();
+                $categoryLevel.prop('disabled', 'disabled');
                 let category = response.category;
                 CategoryClass.fillFormData(category);
+                if (!category['parent_id'])
+                {
+                    $categoryFatherWrap.hide();
+                }
                 $modalForm.modal('show');
             }
         })
@@ -52,8 +59,10 @@ let CategoryClass = {
                 return swalError(response.error)
             }
             return swalSuccess(response.success).then(() => {
-                $tableCategories.html(response.view)
+                $formWrap.html(response.form)
+                $tableCategories.html(response.view);
                 $modalForm.modal('hide');
+                $('.modal-backdrop').remove();
             })
         }).fail(function (reject) {
             if (reject.status === 422) {
@@ -70,8 +79,7 @@ let CategoryClass = {
         let dataInput = CategoryClass.getFormData();
         let callApiToStore = callApi(urlUpdateCategory, 'patch', dataInput);
         callApiToStore.done(function(response){
-            if (response.error)
-            {
+            if (response.error) {
                 return swalError(response.error)
             }
             if (response.success) {
@@ -94,10 +102,10 @@ let CategoryClass = {
 
     fillFormData: function (category = {}) {
         $(".error-message").text('');
-        $categoryName.val(category['category_name'] || '');
+        $categoryName.val(category['name'] || '');
         $categoryLevel.val(category['level' || levelChild]);
         $categoryId.val(category['id'] || '');
-        $categoryFather.val(category['category_id'] || '');
+        $categoryFather.val(category['parent_id'] || '');
         if (category['id']) {
             $modalForm.find('.modal-title').text(lblEdit);
             $modalForm.find('.btn-action').text(lblUpdate).addClass('btn-update').removeClass('btn-save');
@@ -111,9 +119,9 @@ let CategoryClass = {
         return {
             id: $categoryId.val(),
             _token: _token,
-            category_name: $categoryName.val(),
+            name: $categoryName.val(),
             level: $categoryLevel.val(),
-            category_id: $categoryFather.val(),
+            parent_id: $categoryFather.val(),
         }
     },
     getPage: function (page) {

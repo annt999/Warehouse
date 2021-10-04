@@ -11,7 +11,9 @@
 
 @section('content')
     <div class="category-page">
-        @include('admin.categories.form')
+        <div id="category-form-wrap">
+            @include('admin.categories.form')
+        </div>
         <div id="tableCategories">
             @include('admin.categories.table')
         </div>

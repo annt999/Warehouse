@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Models\WareHouse;
+
 class View
 {
     public static function getListActiveOptions(): array
@@ -18,6 +20,17 @@ class View
             config('common.role.employee') => __('view.role.employee'),
             config('common.role.admin') => __('view.role.admin'),
         ];
+    }
+
+    public static function getWareHouseName()
+    {
+        try {
+            $wareHouse = WareHouse::query()->select('name')->where('id', '=', auth()->user()->ware_house_id)->first();
+            return $wareHouse->name;
+
+        } catch (\Exception $ex) {
+            return null;
+        }
     }
 
     public static function getListCategoryLevelOptions()

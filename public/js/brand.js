@@ -2,7 +2,7 @@ let $brandPage = $('.brand-page');
 let $tableBrands = $('#tableBrands');
 let $modalForm = $brandPage.find('#brand-form');
 let $brandId = $modalForm.find('#brand_id');
-let $brandName = $modalForm.find('#brand_name');
+let $brandName = $modalForm.find('#name');
 let $brandDescription = $modalForm.find('#description');
 let $imageInput = $modalForm.find('#image');
 let $imageContainer = $modalForm.find('.image-container');
@@ -112,7 +112,7 @@ let BrandClass = {
         return {
             id: $brandId.val(),
             _token: _token,
-            brand_name: $brandName.val(),
+            name: $brandName.val(),
             description: $brandDescription.val(),
             image: $imageContainer.find('img').attr('src') || '',
         }

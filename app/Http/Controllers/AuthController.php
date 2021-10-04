@@ -31,4 +31,9 @@ class AuthController extends Controller
         Auth::logout();
         return view('auth.login');
     }
+
+    public static function register()
+    {
+        return view('auth.register');
+    }
 }

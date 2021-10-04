@@ -16,7 +16,7 @@
     @foreach($brands as $brand)
         <tr data-id="{{$brand->id}}">
             <td>{{ ($brands ->currentpage()-1) * $brands ->perpage() + $loop->index + 1 }}</td>
-            <td>{{ $brand->brand_name }}</td>
+            <td>{{ $brand->name }}</td>
             <td>
                 <div class="img-table-container">
                     <img src="{{asset(Storage::url('images/'.$brand->image)) }}" alt="">

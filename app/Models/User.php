@@ -25,6 +25,7 @@ class User extends Authenticatable
         'role_id',
         'phone_number',
         'is_active',
+        'ware_house_id'
     ];
 
     /**
@@ -45,4 +46,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function isAdmin()
+    {
+        if (auth()->user()->role_id == config('common.role.admin')) {
+            return true;
+        }
+        return false;
+    }
 }

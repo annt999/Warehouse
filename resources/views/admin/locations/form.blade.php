@@ -11,9 +11,9 @@
                     <div class="form-group">
                         <label for="link"> Location name<em class="required">*</em></label>
                         <div>
-                            <input class="form-control" id="location_name" name="location_name">
+                            <input class="form-control" id="name" name="name">
                         </div>
-                        <div class="text-danger d-none error-message" id="location_name_error"></div>
+                        <div class="text-danger d-none error-message" id="name_error"></div>
                     </div>
 
                     <div class="form-group">

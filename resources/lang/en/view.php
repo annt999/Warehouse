@@ -21,8 +21,9 @@ return [
     'edit' => 'Edit',
     'create_new' => 'Create new',
     'role' => [
-        'admin' => 'Admin',
-        'employee' => 'Employee'
+        'storekeeper' => 'Storekeeper',
+        'employee' => 'Employee',
+        'admin' => 'Admin'
     ],
     'category_level' => [
         'child' => 'Child',
@@ -91,6 +92,14 @@ return [
         'remember' => 'Remember',
         'login' => 'Login',
         'forgot_password' => 'Forgot password',
+    ],
+    'register' => [
+        'register' => 'Register',
+        'username' => 'Username',
+        'password' => 'Password',
+        'email' => 'Email',
+        'phone_number' => 'Phone',
+        'name' => 'Full name'
     ],
     'change_password' => [
         'change_password' => 'Change password',
