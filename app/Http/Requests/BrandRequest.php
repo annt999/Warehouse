@@ -28,7 +28,7 @@ class BrandRequest extends FormRequest
         $rules =  [
             'name' => 'required',
             'image' => 'required|string',
-            'extension' => 'required|'. Rule::in(config('rules.brand.allowed_file_extension')),
+            'extension' => 'required|'. Rule::in(config('rules.allowed_file_extension')),
         ];
         if ($this->getMethod() == 'POST') {
             $rules += [
@@ -36,5 +36,13 @@ class BrandRequest extends FormRequest
             ];
         }
         return $rules;
+    }
+
+    public function messages()
+    {
+        return [
+            'extension.required' => 'Image is required',
+            'extension.in' => 'The file is not in the correct format',
+        ];
     }
 }

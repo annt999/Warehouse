@@ -24,11 +24,11 @@ class WarehouseRequest extends FormRequest
     public function rules()
     {
         return [
-            'warehouse_name' => 'required|min:6|max:50',
-            'user_name' => 'required|min:6|max:20',
-            'name' => 'required|min:10|max:50',
-            'email' => 'required|email',
-            'phone_number' => 'required|digits:10',
+            'warehouse_name' => 'required|min:6|max:50|',
+            'username' => 'required|min:6|max:20|unique:users,username',
+            'name' => 'required|min:10|max:50,unique:warehouses,name,',
+            'email' => 'required|email|unique:users,email',
+            'phone_number' => 'required|digits:10|unique:users,phone_number',
             'password' => 'required|min:6',
             'password_confirmation' => 'required|string|same:password',
         ];

@@ -2,7 +2,7 @@
     <i class="fas fa-plus"></i>
     <span style="color: white">Add new</span>
 </button>
-<table class="table table-striped">
+<table class="table table-bordered">
     <thead>
     <tr>
         <th>No.</th>

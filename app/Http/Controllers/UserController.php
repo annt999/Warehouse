@@ -47,7 +47,7 @@ class UserController extends Controller
             return ['error' => __('message.server_error')];
         }
         return [
-            'success' => __('message.create_user_successfully'),
+            'success' => __('Create successfully'),
             'view' => \View::make(
                 'admin.users.table',
                 [

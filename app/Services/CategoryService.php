@@ -13,16 +13,19 @@ class CategoryService
     {
         return $categoryId ? CategoryRepository::findById($categoryId) : null;
     }
+
     public static function getList()
     {
         return CategoryRepository::getList();
     }
+
     public static function store(CategoryRequest $request)
     {
         $dataInsert = $request->only(['name', 'level', 'parent_id']);
-        $dataInsert['ware_house_id'] = auth()->user()->ware_house_id;
+        $dataInsert['warehouse_id'] = auth()->user()->warehouse_id;
         return CategoryRepository::store($dataInsert);
     }
+
     public static function update(Category $category,CategoryRequest $request)
     {
         if ($category->parent_id) {
@@ -42,8 +45,17 @@ class CategoryService
             ])->render()
         ];
     }
+
     public static function getCategoryFathers()
     {
         return CategoryRepository::getCategoryFathers();
+    }
+
+    public static function getCategoryDividedByFather()
+    {
+        $subCategories = CategoryRepository::getCategoryChilds();
+        return $subCategories->map(function ($subCategory) {
+            return $subCategory->toArray();
+        });
     }
 }

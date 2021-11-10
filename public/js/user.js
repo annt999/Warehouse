@@ -3,7 +3,7 @@ let $tableUsers = $('#tableUsers');
 let $modalForm = $userPage.find('#user-form');
 let $modalDetail = $userPage.find('#user-detail');
 let $userId = $modalForm.find('#user_id');
-let $userName = $modalForm.find('#user_name');
+let $userName = $modalForm.find('#username');
 let $name = $modalForm.find('#name');
 let $isActive = $modalForm.find('#is_active');
 let $phoneNumber = $modalForm.find('#phone_number');
@@ -57,7 +57,7 @@ let UserClass = {
             }
             if (response.user) {
                 let user = response.user;
-                $modalDetail.find('.user_name').text(user['user_name']);
+                $modalDetail.find('.username').text(user['username']);
                 $modalDetail.find('.name').text(user['name']);
                 $modalDetail.find('.email').text(user['email']);
                 $modalDetail.find('.phone_number').text(user['phone_number']);
@@ -96,7 +96,7 @@ let UserClass = {
       e.preventDefault();
         $(".error-message").text('')
         let dataInput = UserClass.getFormData();
-        let callApiToStore = callApi(urlUpdateUser, 'patch', dataInput);
+        let callApiToStore = callApi(urlUpdateUser, 'post', dataInput);
         callApiToStore.done(function(response){
             if (response.error)
             {
@@ -122,7 +122,7 @@ let UserClass = {
 
     fillFormData: function (user = {}) {
         $(".error-message").text('')
-        $userName.val(user['user_name'] || '');
+        $userName.val(user['username'] || '');
         $name.val(user['name'] || '');
         $isActive.val(user['is_active'] || active);
         $phoneNumber.val(user['phone_number'] || '');
@@ -140,7 +140,7 @@ let UserClass = {
         return {
             id: $userId.val(),
             _token: _token,
-            user_name: $userName.val(),
+            username: $userName.val(),
             name: $name.val(),
             phone_number: $phoneNumber.val(),
             email: $email.val(),

@@ -21,9 +21,9 @@ class CreateCustomersTable extends Migration
             $table->date('birthday')->nullable();
             $table->string('address')->nullable();
             $table->tinyInteger('gender');
-            $table->unsignedBigInteger('ware_house_id');
-            $table->foreign('ware_house_id')->references('id')->on('ware_houses');
+            $table->unsignedBigInteger('warehouse_id');
             $table->timestamps();
+            $table->foreign('warehouse_id')->references('id')->on('warehouses');
         });
     }
 

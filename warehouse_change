@@ -1,0 +1,19 @@
+products : 
+- xóa cột purchase_price
+- sửa cột quantity thành quantity_inventory ( tồn kho hiện tại)
+order_detail : lưu thêm sale_price ( giá bán thay đổi)
+
+* Bảng mới import_history
+
+product_id
+purchase_price
+quantity_import ( số lượng nhập)
+
+
+*Thống kê
+- Sản phẩm: tổng tiền nhập, tổng tiên bán được hiện tại, tổng số lượng nhập, các lần nhập, số lượng tồn kho, lỗ/lãi hiện tại
+- Doanh thu: theo tháng, theo theo năm, tổng doanh thu tháng, tổng tiền nhập hàng, tổng khách nợ trong thời gian này, số nợ thu hồi được
+- Nợ: 
+ + Danh sách khách hàng nợ : số tiền, ngày tháng nợ lâu nhất( hóa đơn cũ nhất mua mà nợ)
+ + Hiển thị tổng nợ
+ + Theo khách hàng: khách hàng nợ bao nhiêu

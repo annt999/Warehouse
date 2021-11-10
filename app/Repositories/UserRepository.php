@@ -9,10 +9,12 @@ use Log;
 
 class UserRepository
 {
-    public static function findById(?int $useId)
+    public static function findById($useId)
     {
         try {
-            return User::query()->where('id', $useId)
+            return User::query()
+                ->where('id', $useId)
+                ->where('warehouse_id', auth()->user()->warehouse_id)
                 ->first();
         } catch (\Exception $ex) {
             return null;
@@ -21,7 +23,9 @@ class UserRepository
     public static function findByEmail(string $email)
     {
         try {
-            return User::query()->where('email', $email)
+            return User::query()
+                ->where('email', $email)
+                ->where('warehouse_id', auth()->user()->warehouse_id)
                 ->first();
         } catch (\Exception $ex) {
             return null;
@@ -30,15 +34,15 @@ class UserRepository
 
     public static function getList()
     {
-        return User::query()->where('is_active', config('common.active'))
-            ->where('ware_house_id', auth()->user()->ware_house_id)
+        return User::query()
+            ->where('warehouse_id', auth()->user()->warehouse_id)
             ->paginate(config('common.records_per_page'));
     }
 
     public static function store(array $dataInsert)
     {
         $dataInsert['password'] = \Hash::make('password');
-        $dataInsert['ware_house_id'] = auth()->user()->ware_house_id;
+        $dataInsert['warehouse_id'] = auth()->user()->warehouse_id;
         DB::beginTransaction();
         try {
             $user = User::create($dataInsert);

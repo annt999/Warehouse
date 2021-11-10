@@ -21,8 +21,8 @@
     </form>
     <form id="createAccountForm">
         <h3>CREATE ACCOUNT</h3>
-        <input type="text" placeholder="User name" name="user_name" id="user_name">
-        <div class="text-danger d-none error-message" id="user_name_error"></div>
+        <input type="text" placeholder="User name" name="username" id="username">
+        <div class="text-danger d-none error-message" id="username_error"></div>
         <input type="text" placeholder="Full name" name="name" id="name">
         <div class="text-danger d-none error-message" id="name_error"></div>
         <input type="text" placeholder="Email" name="email" id="email">

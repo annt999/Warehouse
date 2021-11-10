@@ -17,6 +17,6 @@ class Category extends Model
         'description',
         'level',
         'category_id',
-        'ware_house_id',
+        'warehouse_id',
     ];
 }

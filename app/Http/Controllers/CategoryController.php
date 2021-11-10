@@ -14,7 +14,7 @@ class CategoryController extends Controller
     {
         if ($request->ajax()) {
             return [
-                'success' => __('message.create_user_successfully'),
+                'success' => 'Successfully',
                 'view' => \View::make('admin.categories.table',
                                       [
                                           'categories' => CategoryService::getList(),
@@ -33,7 +33,7 @@ class CategoryController extends Controller
     public static function edit(string $id)
     {
         if (!($category = CategoryService::findById($id))) {
-            return ['error' => __('message.category_is_not_exist')];
+            return ['error' => 'Category is not exist'];
         }
         return ['category' => $category];
     }
@@ -43,7 +43,7 @@ class CategoryController extends Controller
             return ['error' => __('message.server_error')];
         }
         return [
-            'success' => __('message.create_category_successfully'),
+            'success' => 'Create category successfully',
             'view' => \View::make(
                 'admin.categories.table',
                 [
@@ -52,9 +52,8 @@ class CategoryController extends Controller
                     'categoryFatherOptions' => CategoryService::getCategoryFathers()->keyBy('id')
                 ])->render(),
             'form' => \View::make(
-                'admin.categories.form',
+                'admin.categories.form-child',
                 [
-                    'levelOptions' => View::getListCategoryLevelOptions(),
                     'categoryFatherOptions' => CategoryService::getCategoryFathers()->keyBy('id')
                 ])->render()
         ];

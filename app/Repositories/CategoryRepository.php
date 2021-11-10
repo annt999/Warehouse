@@ -8,10 +8,12 @@ use Log;
 
 class CategoryRepository
 {
-    public static function findById(?int $categoryId)
+    public static function findById(int $categoryId)
     {
         try {
-            return Category::query()->where('id', $categoryId)
+            return Category::query()
+                ->where('warehouse_id', auth()->user()->warehouse_id)
+                ->where('id', $categoryId)
                 ->first();
         } catch (\Exception $ex) {
             return null;
@@ -19,7 +21,16 @@ class CategoryRepository
     }
     public static function getList()
     {
-        return Category::query()->paginate(config('common.records_per_page'));
+        return Category::query()
+            ->where('warehouse_id', auth()->user()->warehouse_id)
+            ->paginate(config('common.records_per_page'));
+    }
+
+    public static function getSubCategoryIds()
+    {
+        return Category::query()->select('id')
+            ->where('warehouse_id', auth()->user()->warehouse_id)
+            ->where('level', '=', config('common.category_level.child'))->get()->pluck('id');
     }
 
     public static function store(array $dataInsert)
@@ -51,6 +62,27 @@ class CategoryRepository
     }
     public static function getCategoryFathers()
     {
-        return Category::query()->select('id', 'name')->where('level', '=', config('common.category_level.father'))->get();
+        return Category::query()
+            ->select('id', 'name')
+            ->where('warehouse_id', auth()->user()->warehouse_id)
+            ->where('level', '=', config('common.category_level.father'))
+            ->get();
+    }
+
+    public static function getCategoryChilds()
+    {
+        return Category::query()
+            ->select('id', 'name', 'parent_id')
+            ->where('warehouse_id', auth()->user()->warehouse_id)
+            ->where('level', '=', config('common.category_level.child'))
+            ->get()->groupBy('parent_id');
+    }
+
+    public static function getById($id)
+    {
+        return Category::query()
+            ->select('*')
+            ->where('warehouse_id', auth()->user()->warehouse_id)
+            ->find($id);
     }
 }

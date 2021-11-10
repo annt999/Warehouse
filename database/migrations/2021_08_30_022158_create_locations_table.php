@@ -17,8 +17,8 @@ class CreateLocationsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->unsignedBigInteger('ware_house_id');
-            $table->foreign('ware_house_id')->references('id')->on('ware_houses');
+            $table->unsignedBigInteger('warehouse_id');
+            $table->foreign('warehouse_id')->references('id')->on('warehouses');
             $table->timestamps();
         });
     }

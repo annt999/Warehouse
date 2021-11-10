@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\CheckUserActive;
+use App\Http\Middleware\WarehouseActive;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -65,6 +66,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'user.active' => \App\Http\Middleware\CheckUserActive::class,
-
+        'user.storekeeper' => \App\Http\Middleware\IsStorekeeper::class,
+        'role' => \App\Http\Middleware\Role::class,
+        'warehouse.active' => WarehouseActive::class,
     ];
 }

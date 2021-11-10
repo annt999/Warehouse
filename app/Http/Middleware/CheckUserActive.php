@@ -10,8 +10,8 @@ class CheckUserActive
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param Request $request
+     * @param Closure $next
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
@@ -21,7 +21,6 @@ class CheckUserActive
             return $next($request);
         }
         \Auth::logout();
-        return redirect()->route('auth.login')->withErrors(['message' => __('message.account_disabled')]);
-
+        return redirect()->route('auth.login')->withErrors(['message' => __('This account has been disabled')]);
     }
 }

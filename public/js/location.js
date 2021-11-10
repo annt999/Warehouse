@@ -65,7 +65,7 @@ let locationClass = {
         e.preventDefault();
         $(".error-message").text('')
         let dataInput = locationClass.getFormData();
-        let callApiToStore = callApi(urlUpdateLocation, 'patch', dataInput);
+        let callApiToStore = callApi(urlUpdateLocation, 'post', dataInput);
         callApiToStore.done(function(response){
             if (response.error)
             {
@@ -73,7 +73,7 @@ let locationClass = {
             }
             if (response.success) {
                 return swalSuccess(response.success).then(() => {
-                    $tableLocations.html(response.view)
+                    $tableLocations.html(response.view);
                     $modalForm.modal('hide');
                 })
             }

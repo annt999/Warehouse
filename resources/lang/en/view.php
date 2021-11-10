@@ -1,21 +1,16 @@
 <?php
 
 return [
-//    'no.' => 'No.',
-//    'title' => 'Title',
-//    'order' => 'Order',
-//    'create' => 'Create',
-//    'image' => 'Image',
-//    'link' => 'Link',
-//    'description' => 'Description',
-//    'index' => 'Index',
-//    'content' => 'Content',
     'not_active' => 'Disabled',
     'active' => 'Active',
     'close' => 'Close',
     'Ok' => 'Ok',
     'error' => 'Error',
-//    'logout' => 'Logout',
+    'product_status' => [
+        'available' => 'Available',
+        'unavailable' => 'Unavailable',
+        'suspended' => 'Suspended'
+    ],
     'save' => 'Save',
     'update' => 'Update',
     'edit' => 'Edit',
@@ -29,18 +24,6 @@ return [
         'child' => 'Child',
         'father' => 'Father'
     ],
-//    'content_page' => [
-//        'link' => 'Link',
-//        'image' => 'Image',
-//        'description' => 'Description',
-//        'publish' => 'Publish',
-//        'index' => 'Index',
-//        'content_detail' => 'Content detail',
-//        'published' => 'Published',
-//        'not_published_yet' => 'Not published yet',
-//        'created_at' => 'Created at',
-//        'updated_at' => 'Updated at',
-//    ],
     'user_page' => [
         'user_detail' => 'User detail',
         'user_name' => 'User name',
@@ -57,35 +40,6 @@ return [
     'brand_page' => [
         'brand_logo' => 'Brand logo'
     ],
-//    'tag_page' => [
-//        'tag' => 'Tag',
-//        'tag_name' => 'Tag name',
-//        'create_new_tag' => 'Create new tag',
-//        'edit_tag' => 'Edit tag',
-//        'tag_detail' => 'Tag detail',
-//    ],
-//    'recommend_page' => [
-//        'title' => 'Title',
-//        'link' => 'Link',
-//        'image' => 'Image',
-//        'description' => 'Description',
-//        'publish' => 'Publish',
-//        'index' => 'Index',
-//        'recommend_detail' => 'Recommend detail',
-//        'published' => 'Published',
-//        'not_published_yet' => 'Not published yet',
-//        'created_at' => 'Created at',
-//        'updated_at' => 'Updated at',
-//    ],
-//    'sidebar' => [
-//        'my_page' => 'My page',
-//        'banner' => 'Banner',
-//        'campaign' => 'Campaign',
-//        'tag' => 'Tag',
-//        'content' => 'Content',
-//        'setting' => 'Setting',
-//        'recommend' => 'Recommend',
-//    ],
     'login' => [
         'username' => 'Username',
         'password' => 'Password',

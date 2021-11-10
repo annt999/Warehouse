@@ -11,7 +11,9 @@ class LocationRepository
     public static function findById(?int $locationId)
     {
         try {
-            return Location::query()->where('id', $locationId)
+            return Location::query()
+                ->where('warehouse_id', auth()->user()->warehouse_id)
+                ->where('id', $locationId)
                 ->first();
         } catch (\Exception $ex) {
             return null;
@@ -20,8 +22,16 @@ class LocationRepository
     public static function getList()
     {
         return Location::query()
-            ->where('ware_house_id', auth()->user()->ware_house_id)
+            ->where('warehouse_id', auth()->user()->warehouse_id)
+            ->where('warehouse_id', auth()->user()->warehouse_id)
             ->paginate(config('common.records_per_page'));
+    }
+
+    public static function getListLocationOptions()
+    {
+        return Location::query()->select('id', 'name')
+            ->where('warehouse_id', auth()->user()->warehouse_id)
+            ->get();
     }
 
     public static function store(array $dataInsert)

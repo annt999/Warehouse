@@ -1,8 +1,5 @@
 <?php
 
 return [
-
-    'brand' => [
-        'allowed_file_extension' => ['jpg', 'jpeg', 'png'],
-    ],
+    'allowed_file_extension' => ['jpg', 'jpeg', 'png'],
 ];

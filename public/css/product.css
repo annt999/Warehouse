@@ -7,3 +7,9 @@
     width: 9rem;
     height: 5rem;
 }
+.label-title {
+    font-weight: 900;
+}
+.modal-item {
+    padding: 5px;
+}

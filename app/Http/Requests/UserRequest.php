@@ -33,7 +33,7 @@ class UserRequest extends FormRequest
         ];
         if ($this->getMethod() == 'POST') {
             $rules += [
-                'user_name' => 'required|min:6|max:20',
+                'username' => 'required|min:6|max:20|unique:users,username,' . $this->id,
                 'email' => 'required|email|unique:users,email,'.$this->id,
             ];
         }

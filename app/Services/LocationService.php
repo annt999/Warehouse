@@ -19,8 +19,7 @@ class LocationService
     public static function store(LocationRequest $request)
     {
         $dataInsert = $request->only(['name', 'description']);
-        $dataInsert['ware_house_id'] = auth()->user()->ware_house_id;
-        \Log::error($dataInsert);
+        $dataInsert['warehouse_id'] = auth()->user()->warehouse_id;
         return LocationRepository::store($dataInsert);
     }
     public static function update(Location $location,LocationRequest $request)
@@ -31,11 +30,10 @@ class LocationService
             return ['error' => __('message.server_error')];
         }
         return [
-            'success' => __('message.update_location_successfully'),
+            'success' => 'Update location successfully',
             'view' => \View::make('admin.locations.table', [
                 'locations' => LocationService::getList(),
             ])->render()
         ];
-
     }
 }

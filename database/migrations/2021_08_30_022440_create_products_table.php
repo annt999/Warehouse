@@ -18,20 +18,22 @@ class CreateProductsTable extends Migration
             $table->string('product_code');
             $table->string('name');
             $table->string('image');
-            $table->integer('quantity');
-            $table->string('sale_price');
-            $table->string('purchase_price');
-            $table->text('description');
+            $table->integer('quantity_inventory')->default(0);
+            $table->string('sale_price')->default('0');
+            $table->text('description')->nullable();
+            $table->tinyInteger('status')->default(config('common.product_status.available'));
             $table->unsignedBigInteger('location_id');
             $table->unsignedBigInteger('brand_id');
             $table->unsignedBigInteger('category_id');
-            $table->tinyInteger('is_trading')->default(config('common.is_trading'));
-            $table->unsignedBigInteger('ware_house_id');
-            $table->foreign('ware_house_id')->references('id')->on('ware_houses');
-            $table->foreign('location_id')->references('id')->on('locations');
+            $table->unsignedBigInteger('warehouse_id');
+            $table->timestamps();
+            $table->foreign('warehouse_id')->references('id')->on('warehouses');
             $table->foreign('brand_id')->references('id')->on('brands');
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->timestamps();
+            $table->foreign('location_id')->references('id')->on('locations');
+
+
+
         });
     }
 

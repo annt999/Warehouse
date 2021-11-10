@@ -68,7 +68,7 @@ let BrandClass = {
         e.preventDefault();
         $(".error-message").text('')
         let dataInput = BrandClass.getFormData();
-        let callApiToStore = callApi(urlUpdateBrand, 'patch', dataInput);
+        let callApiToStore = callApi(urlUpdateBrand, 'post', dataInput);
         callApiToStore.done(function(response){
             if (response.error)
             {
@@ -95,7 +95,7 @@ let BrandClass = {
     fillFormData: function (brand = {}) {
         $(".error-message").text('');
         $imageInput.val('');
-        $brandName.val(brand['brand_name'] || '');
+        $brandName.val(brand['name'] || '');
         $brandDescription.val(brand['description' || '']);
         $brandId.val(brand['id'] || '');
         if (brand['id']) {

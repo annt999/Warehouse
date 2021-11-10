@@ -15,6 +15,6 @@ class Brand extends Model
         'name',
         'description',
         'image',
-        'ware_house_id'
+        'warehouse_id'
     ];
 }

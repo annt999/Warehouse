@@ -74,7 +74,7 @@ form button{
     position: relative;
 }
 
-#linkForgot{
+#linkForgot, #linkRegister{
     text-decoration: none;
     color: #37adfd;
     font-size: 14px;

@@ -47,7 +47,7 @@ class BrandController extends Controller
             return ['error' => __('message.server_error')];
         }
         return [
-            'success' => __('message.create_brand_successfully'),
+            'success' => 'Create brand successfully',
             'view' => \View::make(
                 'admin.brands.table',
                 [
@@ -58,18 +58,15 @@ class BrandController extends Controller
     }
     public static function update(Request $request)
     {
-        if ($request->has('image'))
-        {
+        if ($request->has('image')) {
             $imageInput = $request->get('image');
             $extension = View::getFileExtension($imageInput);
             $request->merge(['extension' => $extension]);
         }
         $brandId = $request->get('id');
         if (!($brand = BrandService::findById($brandId))) {
-            return ['error' => __('message.brand_is_not_exist')];
+            return ['error' => 'Brand is not exist'];
         }
         return BrandService::update($brand, $request);
     }
-
-
 }

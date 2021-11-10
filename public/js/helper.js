@@ -8,9 +8,11 @@ window.callApi = function (url, method, data) {
 }
 
 window.callApiWithFile = function (url, method, data) {
+    console.log(data)
     let formData = new FormData();
     Object.keys(data).map((key) => {
         if (typeof data[key] === 'object') {
+            console.log("vao 1")
             data[key].forEach((item) => {
                 formData.append(`${key}[]`, item);
             });
@@ -18,7 +20,7 @@ window.callApiWithFile = function (url, method, data) {
             formData.append(key, data[key]);
         }
     });
-    console.log(data['image'])
+    console.log(formData)
 
     return $.ajax({
         url: url,
@@ -59,5 +61,27 @@ window.swalError = function (message) {
         confirmButtonText: "Ok",
     });
 }
+
+window.isNumber = function (evt){
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if ( (charCode > 31 && charCode < 48) || charCode > 57) {
+        return false;
+    }
+    return true;
+}
+
+window.GetURLParameter = function (sParam) {
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++){
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
+        }
+    }
+}
+
 
 

@@ -1,4 +1,4 @@
-<div class="modal fade" role="dialog" id="category-form">
+<div class="modal fade" role="dialog" id="category-form" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form autocomplete="off">
@@ -19,6 +19,7 @@
                         <label for="level_id">Level<em class="required">*</em></label>
                         <div>
                             <select class="form-control" id="category_level" name="level">
+                                <option value=""></option>
                                 @foreach ($levelOptions as $key => $value)
                                     <option value="{!! $key !!}">{!! $value !!}</option>
                                 @endforeach
@@ -30,6 +31,7 @@
                         <label for="level_id">Category father<em class="required">*</em></label>
                         <div>
                             <select class="form-control" id="parent_id" name="parent_id">
+                                <option value=""></option>
                                 @foreach ($categoryFatherOptions as $category)
                                     <option value="{!! $category->id !!}">{!! $category->name !!}</option>
                                 @endforeach

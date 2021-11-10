@@ -34,19 +34,22 @@ class UserService
 
     public static function getList()
     {
-        $users = UserRepository::getList();
-        return $users;
+        return UserRepository::getList();
     }
 
     public static function store(UserRequest $request)
     {
-        $dataInsert = $request->only(['user_name', 'name', 'phone_number', 'email', 'is_active', 'role_id']);
+        $dataInsert = $request->only(['username', 'name', 'phone_number', 'email', 'is_active', 'role_id']);
         return UserRepository::store($dataInsert);
     }
 
     public static function update(User $user,UserRequest $request)
     {
-        $dataUpdate = $request->only(['name', 'phone_number', 'is_active', 'role_id']);
+        if (auth()->user()->id = $request->id) {
+            $dataUpdate = $request->only(['name', 'phone_number', 'role_id']);
+        } else {
+            $dataUpdate = $request->only(['name', 'phone_number', 'is_active', 'role_id']);
+        }
         if (!UserRepository::update($user, $dataUpdate))
         {
             return ['error' => __('message.server_error')];

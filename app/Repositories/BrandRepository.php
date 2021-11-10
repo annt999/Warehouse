@@ -11,7 +11,9 @@ class BrandRepository
     public static function findById(?int $brandId)
     {
         try {
-            return Brand::query()->where('id', $brandId)
+            return Brand::query()
+                ->where('warehouse_id', auth()->user()->warehouse_id)
+                ->where('id', $brandId)
                 ->first();
         } catch (\Exception $ex) {
             return null;
@@ -19,7 +21,14 @@ class BrandRepository
     }
     public static function getList()
     {
-        return Brand::query()->paginate(config('common.records_per_page'));
+        return Brand::query()->where('warehouse_id', auth()->user()->warehouse_id)->paginate(config('common.records_per_page'));
+    }
+
+    public static function getListBrandOptions()
+    {
+        return Brand::query()
+            ->where('warehouse_id', auth()->user()->warehouse_id)
+            ->select('id', 'name')->get();
     }
 
     public static function store(array $dataInsert)

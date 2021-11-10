@@ -11,7 +11,7 @@
                     <div class="form-group">
                         <label for="link"> Brand name<em class="required">*</em></label>
                         <div>
-                            <input class="form-control" id="brand_name" name="name">
+                            <input class="form-control" id="name" name="name">
                         </div>
                         <div class="text-danger d-none error-message" id="name_error"></div>
                     </div>
@@ -25,11 +25,11 @@
                     </div>
                     <div class="form-group">
                         <label for="image">{!! __('view.brand_page.brand_logo') !!} <em class="required">*</em></label>
+                        <div class="text-danger d-none error-message" id="extension_error"></div>
                         <div>
                             <input type="file" name="image" class="form-control" id="image" accept="image/*">
                             <div class="image-container"></div>
                         </div>
-                        <div class="text-danger d-none error-message" id="image_error"></div>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -12,9 +12,8 @@ class LocationController extends Controller
     public static function index(Request $request)
     {
         if ($request->ajax()) {
-            \Log::error(LocationService::getList());
             return [
-                'success' => __('message.create_user_successfully'),
+                'success' => __('success'),
                 'view' => \View::make('admin.locations.table',
                                       [
                                           'locations' => LocationService::getList(),
@@ -29,7 +28,7 @@ class LocationController extends Controller
     public static function edit(string $id)
     {
         if (!($location = LocationService::findById($id))) {
-            return ['error' => __('message.location_is_not_exist')];
+            return ['error' => 'Location does not exist'];
         }
         return ['location' => $location];
     }
@@ -39,7 +38,7 @@ class LocationController extends Controller
             return ['error' => __('message.server_error')];
         }
         return [
-            'success' => __('message.create_location_successfully'),
+            'success' => 'Create location successfully',
             'view' => \View::make(
                 'admin.locations.table',
                 [
@@ -52,7 +51,7 @@ class LocationController extends Controller
     {
         $locationId = $request->get('id');
         if (!($location = LocationService::findById($locationId))) {
-            return ['error' => __('message.location_is_not_exist')];
+            return ['error' => 'Location does not exist'];
         }
         return LocationService::update($location, $request);
     }

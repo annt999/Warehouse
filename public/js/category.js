@@ -1,7 +1,7 @@
 let $categoryPage = $('.category-page');
 let $tableCategories = $('#tableCategories');
 let $modalForm = $categoryPage.find('#category-form');
-let $formWrap = $categoryPage.find('#category-form-wrap')
+let $formWrap = $categoryPage.find('#category-form-wrap');
 let $categoryId = $modalForm.find('#category_id');
 let $categoryName = $modalForm.find('#name');
 let $categoryLevel = $modalForm.find('#category_level');
@@ -19,12 +19,17 @@ $(document).ready(function () {
         var page = $(this).attr('href').split('page=')[1];
         CategoryClass.getPage(page)
     })
+    $('#category-form').on('hidden.bs.modal', function () {
+        $(this).find('form').trigger('reset');
+    });
 });
 
 let CategoryClass = {
 
     create: function() {
         CategoryClass.fillFormData();
+        $categoryLevel.prop('disabled', false);
+        $categoryFatherWrap.show();
         $modalForm.modal('show');
     },
 
@@ -59,7 +64,7 @@ let CategoryClass = {
                 return swalError(response.error)
             }
             return swalSuccess(response.success).then(() => {
-                $formWrap.html(response.form)
+                $categoryFatherWrap.replaceWith(response.form)
                 $tableCategories.html(response.view);
                 $modalForm.modal('hide');
                 $('.modal-backdrop').remove();
@@ -77,7 +82,7 @@ let CategoryClass = {
         e.preventDefault();
         $(".error-message").text('')
         let dataInput = CategoryClass.getFormData();
-        let callApiToStore = callApi(urlUpdateCategory, 'patch', dataInput);
+        let callApiToStore = callApi(urlUpdateCategory, 'post', dataInput);
         callApiToStore.done(function(response){
             if (response.error) {
                 return swalError(response.error)
@@ -86,6 +91,7 @@ let CategoryClass = {
                 return swalSuccess(response.success).then(() => {
                     $tableCategories.html(response.view)
                     $modalForm.modal('hide');
+                    $('.money').simpleMoneyFormat();
                 })
             }
         }).fail(function (reject) {
@@ -115,13 +121,12 @@ let CategoryClass = {
         }
     },
     getFormData: function () {
-        console.log($categoryLevel.val(), $categoryFather.val())
         return {
             id: $categoryId.val(),
             _token: _token,
             name: $categoryName.val(),
-            level: $categoryLevel.val(),
-            parent_id: $categoryFather.val(),
+            level: $('#category_level').val(),
+            parent_id: $('#parent_id').val(),
         }
     },
     getPage: function (page) {
@@ -143,9 +148,9 @@ let CategoryClass = {
     showCategoryFatherOptions: function () {
         if ($categoryLevel.val() !== levelChild)
         {
-            $categoryFatherWrap.hide();
+            $('.category_fathers_wrap').hide();
         } else {
-            $categoryFatherWrap.show();
+            $('.category_fathers_wrap').show();
         }
     }
 }

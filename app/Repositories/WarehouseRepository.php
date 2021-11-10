@@ -14,7 +14,7 @@ class WarehouseRepository
         DB::beginTransaction();
         try {
             $warehouse = WareHouse::create($warehouseInsert);
-            $userInsert['ware_house_id'] = $warehouse->id;
+            $userInsert['warehouse_id'] = $warehouse->id;
             $user = User::create($userInsert);
             DB::commit();
             return ['user' => $user, 'warehouse' => $warehouse];

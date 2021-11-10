@@ -13,7 +13,7 @@ class CreateWareHousesTable extends Migration
      */
     public function up()
     {
-        Schema::create('ware_houses', function (Blueprint $table) {
+        Schema::create('warehouses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->tinyInteger('is_active')->default(config('common.active'));
@@ -28,6 +28,6 @@ class CreateWareHousesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ware_houses');
+        Schema::dropIfExists('warehouses');
     }
 }

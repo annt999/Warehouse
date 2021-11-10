@@ -2,7 +2,7 @@
     <i class="fas fa-plus"></i>
     <span style="color: white">Add new</span>
 </button>
-<table class="table table-striped">
+<table class="table table-bordered">
     <thead>
     <tr>
         <th>No.</th>
@@ -19,7 +19,7 @@
         @foreach($users as $user)
             <tr data-id="{{$user->id}}">
                 <td>{{ ($users ->currentpage()-1) * $users ->perpage() + $loop->index + 1 }}</td>
-                <td>{{ $user->user_name }}</td>
+                <td>{{ $user->username }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->phone_number }}</td>
@@ -27,7 +27,11 @@
                 <td>{{$activeOptions[$user->is_active]}}</td>
                 <td>
                     <button class="btn btn-success btn-detail"><i class="fa fa-info-circle"></i></button>
-                    <button class="btn btn-danger btn-edit"><i class="fas fa-edit"></i></button>
+                    @if($user->role_id == config('common.role.storekeeper'))
+                        <button class="btn btn-danger btn-edit" disabled><i class="fas fa-edit"></i></button>
+                    @else
+                        <button class="btn btn-danger btn-edit"><i class="fas fa-edit"></i></button>
+                    @endif
                 </td>
             </tr>
         @endforeach

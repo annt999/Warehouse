@@ -2,7 +2,7 @@
     <i class="fas fa-plus"></i>
     <span style="color: white">Add new</span>
 </button>
-<table class="table table-striped">
+<table class="table table-bordered">
     <thead>
     <tr>
         <th>No.</th>
@@ -18,8 +18,8 @@
             <td>{{ ($categories ->currentpage()-1) * $categories ->perpage() + $loop->index + 1 }}</td>
             <td>{{ $category->name }}</td>
             <td>{{$levelOptions[$category->level]}}</td>
-            @if($category->category_id)
-            <td>{{$categoryFatherOptions[$category->category_id]->category_name}}</td>
+            @if(isset($category->parent_id))
+            <td>{{$categoryFatherOptions[$category->parent_id]->name}}</td>
             @else
             <td></td>
             @endif

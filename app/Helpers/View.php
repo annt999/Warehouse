@@ -6,7 +6,7 @@ use App\Models\WareHouse;
 
 class View
 {
-    public static function getListActiveOptions(): array
+    public static function getListActiveOptions()
     {
         return [
             config('common.active') => __('view.active'),
@@ -17,15 +17,16 @@ class View
     public static function getListRoleOptions()
     {
         return [
+            config('common.role.storekeeper') => __('view.role.storekeeper'),
             config('common.role.employee') => __('view.role.employee'),
-            config('common.role.admin') => __('view.role.admin'),
+//            config('common.role.admin') => __('view.role.admin'),
         ];
     }
 
     public static function getWareHouseName()
     {
         try {
-            $wareHouse = WareHouse::query()->select('name')->where('id', '=', auth()->user()->ware_house_id)->first();
+            $wareHouse = WareHouse::query()->select('name')->where('id', '=', auth()->user()->warehouse_id)->first();
             return $wareHouse->name;
 
         } catch (\Exception $ex) {
@@ -41,7 +42,7 @@ class View
         ];
     }
 
-    public static function getFileExtension($file): ?string
+    public static function getFileExtension($file)
     {
         if (!is_string($file)) {
             return null;
@@ -52,5 +53,14 @@ class View
         }
         $ext = explode('/', $ext[1]);
         return $ext[1] ?? null;
+    }
+
+    public static function getProductStatus()
+    {
+        return [
+            config('common.product_status.available') => __('view.product_status.available'),
+            config('common.product_status.unavailable') => __('view.product_status.unavailable'),
+            config('common.product_status.suspended') => __('view.product_status.suspended'),
+        ];
     }
 }

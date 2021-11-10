@@ -12,9 +12,9 @@
                     <div class="form-group">
                         <label for="link"> User name<em class="required">*</em></label>
                         <div>
-                            <input class="form-control" id="user_name" name="user_name">
+                            <input class="form-control" id="username" name="username">
                         </div>
-                        <div class="text-danger d-none error-message" id="user_name_error"></div>
+                        <div class="text-danger d-none error-message" id="username_error"></div>
                     </div>
                     <div class="form-group">
                         <label for="name">Full name<em class="required">*</em></label>
@@ -51,6 +51,7 @@
                     <div class="form-group">
                         <label for="is_active">Active status <em class="required">*</em></label>
                         <div>
+
                             <select class="form-control" id="is_active" name="is_active">
                                 @foreach ($activeOptions as $key => $value)
                                     <option value="{!! $key !!}">{!! $value !!}</option>

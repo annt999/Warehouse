@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\View;
 use App\Http\Requests\WarehouseRequest;
+use App\Models\WareHouse;
 use App\Services\WarehouseService;
-use Illuminate\Http\Request;
 
 class WarehouseController extends Controller
 {
@@ -19,7 +20,33 @@ class WarehouseController extends Controller
             return ['error' => __('message.server_error')];
         }
         return [
-            'success' => __('message.create_user_successfully'),
+            'success' => __('Create successfully'),
         ];
+    }
+
+    public static function index()
+    {
+        return view('admin.warehouses.index',
+            [
+                'warehouses' => WareHouse::query()->paginate(10),
+                'activeOptions' => View::getListActiveOptions(),
+            ]);
+    }
+
+    public static function changeStatus($id)
+    {
+        $warehouse = WareHouse::query()->findOrFail($id);
+        if (!$warehouse) {
+            abort(404);
+        }
+        if ($warehouse->is_active == config('common.active')) {
+            $warehouse->is_active = config('common.not_active');
+        } else {
+            $warehouse->is_active = config('common.active');
+        }
+        $warehouse->save();
+
+        toastr()->success('success');
+        return redirect()->route('warehouse.index');
     }
 }

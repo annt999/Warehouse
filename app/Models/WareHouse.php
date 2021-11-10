@@ -9,7 +9,7 @@ class WareHouse extends Model
 {
     use HasFactory;
 
-    protected $table = 'ware_houses';
+    protected $table = 'warehouses';
 
     protected $fillable = [
         'name',

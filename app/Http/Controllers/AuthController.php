@@ -19,17 +19,19 @@ class AuthController extends Controller
             return view('auth.login');
         }
         /* Handle the login form */
-        $credentials = $request->only('user_name', 'password');
+        $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
+            if (auth()->user()->isAdmin()) {
+                return redirect()->route('warehouse.index');
+            }
             return redirect()->route('home');
         }
-
         return redirect()->back()->withErrors(['message' => __('message.invalid_login')])->withInput();
     }
     public static function logout()
     {
         Auth::logout();
-        return view('auth.login');
+        return redirect()->route('auth.login');
     }
 
     public static function register()

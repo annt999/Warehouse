@@ -2,7 +2,7 @@ var $createWareHouseForm = $("#createWareHouseForm");
 var $createAccountForm = $("#createAccountForm");
 var $progress = $("#progress");
 var $warehouseName = $createWareHouseForm.find('#warehouse_name');
-var $userName = $createAccountForm.find('#user_name');
+var $userName = $createAccountForm.find('#username');
 var $fullName = $createAccountForm.find('#name');
 var $email = $createAccountForm.find('#email');
 var $phoneNumber = $createAccountForm.find('#phone_number');
@@ -37,6 +37,11 @@ $(document).ready(function () {
                 var errors = $.parseJSON(reject.responseText).errors;
                 $.each(errors, function (key, val) {
                     $("#" + key + "_error").text(val[0]).removeClass('d-none');
+                    if (key == 'warehouse_name') {
+                        $createWareHouseForm.css('left', '40px');
+                        $createAccountForm.css('left', '450px');
+                        $progress.css('width', '180px');
+                    }
                 });
             }
         })
@@ -49,7 +54,7 @@ let WarehouseClass = {
         return {
             _token: _token,
             warehouse_name: $warehouseName.val(),
-            user_name: $userName.val(),
+            username: $userName.val(),
             name: $fullName.val(),
             phone_number: $phoneNumber.val(),
             email: $email.val(),

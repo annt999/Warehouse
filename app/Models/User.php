@@ -18,14 +18,14 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'user_name',
+        'username',
         'name',
         'email',
         'password',
         'role_id',
         'phone_number',
         'is_active',
-        'ware_house_id'
+        'warehouse_id'
     ];
 
     /**
@@ -53,5 +53,39 @@ class User extends Authenticatable
             return true;
         }
         return false;
+    }
+
+    public static function isStorekeeper()
+    {
+        if (auth()->user()->role_id == config('common.role.storekeeper')) {
+            return true;
+        }
+        return false;
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function warehouse()
+    {
+        return $this->belongsTo(WareHouse::class);
+    }
+    /**
+     * Check multiple roles
+     * @param array $roles
+     */
+    public function hasAnyRole($roles)
+    {
+        return null !== $this->role()->whereIn('role', $roles)->first();
+    }
+    /**
+     * Check one role
+     * @param string $role
+     */
+    public function hasRole($role)
+    {
+        return null !== $this->role()->where('role', $role)->first();
     }
 }

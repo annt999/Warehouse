@@ -9,7 +9,7 @@
                     <div class="row ">
                         <label class="col-md-4">{!! __('view.user_page.user_name') !!}:</label>
                         <div class="col-md-8">
-                            <span class="user_name"></span>
+                            <span class="username"></span>
                         </div>
                     </div>
                     <div class="row">
