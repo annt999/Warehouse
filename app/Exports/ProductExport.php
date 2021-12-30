@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -94,6 +95,14 @@ class ProductExport implements
 
         if (isset($dataSearch['category_child_id'])) {
             $query->where('categories.id', $dataSearch['category_child_id']);
+        }
+
+
+        if (isset($dataSearch['category_father_id'])) {
+            $categoriesChild = Category::query()
+                ->where('parent_id', '=', $dataSearch['category_father_id'])
+                ->get()->pluck('id')->toArray();
+            $query->whereIn('categories.id', $categoriesChild);
         }
 
         if (isset($dataSearch['status'])) {
