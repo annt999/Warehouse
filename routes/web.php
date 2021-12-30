@@ -50,11 +50,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['role:' . config('common.role.admin')]], function () {
         Route::get('/warehouses', [WarehouseController::class, 'index'])->name('warehouse.index');
         Route::get('/warehouses/change-status/{id}', [WarehouseController::class, 'changeStatus'])->name('warehouse.change-status');
-
-        //Auth
-        Route::get('/change-password', [UserController::class, 'getChangePassword'])->name('password.change.get');
-        Route::post('/change-password', [UserController::class, 'changePassword'])->name('password.change.post');
     });
+    //Auth
+    Route::get('/change-password', [UserController::class, 'getChangePassword'])->name('password.change.get');
+    Route::post('/change-password', [UserController::class, 'changePassword'])->name('password.change.post');
 });
 
 Route::group(['middleware' => ['auth', 'user.active', 'warehouse.active']], function () {
