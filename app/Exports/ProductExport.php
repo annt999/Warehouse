@@ -75,7 +75,7 @@ class ProductExport implements
             ]);
         $query = Product::query();
         $query->select('products.*', 'categories.name as category', 'brands.image as brand_image',
-                       'brands.name as brand', 'locations.name as location')
+                       'brands.name as brand', 'locations.name as location', 'warehouse_id')
             ->leftJoin('categories', 'categories.id', 'products.category_id')
             ->leftJoin('brands', 'brands.id', 'products.brand_id')
             ->leftJoin('locations', 'locations.id', 'products.location_id');
