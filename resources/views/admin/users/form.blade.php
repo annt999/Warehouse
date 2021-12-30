@@ -1,4 +1,3 @@
-
 <div class="modal fade" role="dialog" id="user-form">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -24,7 +23,7 @@
                         <div class="text-danger d-none error-message" id="name_error"></div>
                     </div>
                     <div class="form-group">
-                        <label for="phone_number">Phone number</label>
+                        <label for="phone_number">Phone number<em class="required">*</em></label>
                         <div>
                             <input type="text" class="form-control" id="phone_number" name="phone_number">
                         </div>

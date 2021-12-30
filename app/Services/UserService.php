@@ -45,7 +45,7 @@ class UserService
 
     public static function update(User $user,UserRequest $request)
     {
-        if (auth()->user()->id = $request->id) {
+        if (auth()->user()->id == $request->id) {
             $dataUpdate = $request->only(['name', 'phone_number', 'role_id']);
         } else {
             $dataUpdate = $request->only(['name', 'phone_number', 'is_active', 'role_id']);

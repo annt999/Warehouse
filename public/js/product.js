@@ -163,6 +163,7 @@ let ProductClass = {
             }
             if (response.product) {
                 let product = response.product;
+                console.log(product)
                 $modalDetail.find('.image').attr('src', `${baseImageUrl}/${product['image']}`);
                 $modalDetail.find('.name').text(product['name']);
                 $modalDetail.find('.product_code').text(product['product_code']);
@@ -171,7 +172,8 @@ let ProductClass = {
                 $modalDetail.find('.brand').text(product['brand_name']);
                 $modalDetail.find('.location').text(product['location_name']);
                 $modalDetail.find('.category').text(product['category_name']);
-                $modalDetail.find(product['status'] === AVAILABLE ? '.available' : (product['status'] === UNAVAILABLE ? 'unavailable' : 'suspended')).prop('checked', true);
+                $modalDetail.find('.product-status').prop('checked', false);
+                $modalDetail.find(product['status'] === AVAILABLE ? '.available' : (product['status'] === UNAVAILABLE ? '.unavailable' : '.suspended')).prop('checked', true);
                 $modalDetail.addClass('show').modal('show');
             }
         })

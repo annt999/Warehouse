@@ -28,15 +28,15 @@
                         <label class="label-title col-4">Status:</label>
                         <div class="status col-8" style="display: flex; flex-direction: row">
                             <div>
-                                <input type="checkbox" class="available" disabled>
+                                <input type="checkbox" class="available product-status" disabled>
                                 <span>Available</span>
                             </div>
                             <div class="ml-3">
-                                <input type="checkbox" class="unavailable" disabled>
+                                <input type="checkbox" class="unavailable product-status" disabled>
                                 <span>Unavailable</span>
                             </div>
                             <div class="ml-3">
-                                <input type="checkbox" class="suspended" disabled>
+                                <input type="checkbox" class="suspended product-status" disabled>
                                 <span>Suspended</span>
                             </div>
                         </div>
