@@ -13,11 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//        \DB::table('roles')->insert([
-//            ['role' => 1],
-//            ['role' => 2],
-//            ['role' => 3],
-//        ]);
+        \DB::table('roles')->insert([
+            ['role' => 1],
+            ['role' => 2],
+            ['role' => 3],
+        ]);
 
         \DB::table('users')->insert([
            [

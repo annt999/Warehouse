@@ -108,6 +108,7 @@ class ProductExport implements
             $query->where('products.quantity', '<=', $dataSearch['quantity_max']);
         }
 
+        $query->where('warehouse_id', auth()->user()->warehouse_id);
         $query->orderBy('created_at');
         return $query;
     }
