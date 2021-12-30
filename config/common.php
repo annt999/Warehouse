@@ -43,6 +43,6 @@ return [
     ],
 
     'urlImageBase' => 'storage/images/',
-    'domain' => 'http://127.0.0.1:8000',
+    'domain' => 'http://18.139.227.78',
 
 ];
