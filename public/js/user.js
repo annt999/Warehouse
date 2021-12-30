@@ -27,6 +27,8 @@ let UserClass = {
 
     create: function() {
         UserClass.fillFormData();
+        $userName.prop('disabled', false);
+        $email.prop('disabled', false);
         $modalForm.modal('show');
     },
 
@@ -72,7 +74,7 @@ let UserClass = {
     },
     store: function (e) {
         e.preventDefault();
-        $(".error-message").text('')
+        $(".error-message").text('');
         let dataInput = UserClass.getFormData();
         let callApiToStore = callApi(urlStoreUser, 'post', dataInput);
         callApiToStore.done(function(response){
@@ -80,7 +82,7 @@ let UserClass = {
                 return swalError(response.error)
             }
             return swalSuccess(response.success).then(() => {
-                $tableUsers.html(response.view)
+                $tableUsers.html(response.view);
                 $modalForm.modal('hide');
             })
         }).fail(function (reject) {
@@ -128,6 +130,7 @@ let UserClass = {
         $phoneNumber.val(user['phone_number'] || '');
         $email.val(user['email'] || '');
         $userId.val(user['id'] || '');
+        $roleId.val(user['role_id' || '']);
         if (user['id']) {
             $modalForm.find('.modal-title').text(lblEdit);
             $modalForm.find('.btn-action').text(lblUpdate).addClass('btn-update').removeClass('btn-save');
