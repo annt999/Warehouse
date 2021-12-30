@@ -71,8 +71,8 @@ class CustomerController extends Controller
         $filter_data = Customer::query()
             ->select('name', 'phone_number', 'id')
             ->where('name', 'LIKE', '%'.$query.'%')
-            ->orWhere('phone_number', 'LIKE', '%'.$query.'%')
             ->where('warehouse_id', auth()->user()->warehouse_id)
+            ->orWhere('phone_number', 'LIKE', '%'.$query.'%')
             ->get();
 
         return response()->json($filter_data);

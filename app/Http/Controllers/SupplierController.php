@@ -66,6 +66,7 @@ class SupplierController extends Controller
         }
         $data = Supplier::select("id","name")
             ->where('name','LIKE',"%$search%")
+            ->where('warehouse_id', auth()->user()->warehouse_id)
             ->get();
         return response()->json($data);
     }
