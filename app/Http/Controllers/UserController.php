@@ -75,6 +75,6 @@ class UserController extends Controller
 
     public static function changePassword(ChangePasswordRequest $request)
     {
-        return UserService::updatePassword(auth()->user(), $request);
+        return UserService::updatePassword(auth()->user(), $request);;
     }
 }

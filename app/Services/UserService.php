@@ -8,6 +8,7 @@ use App\Http\Requests\UserRequest;
 use App\Jobs\SendMailResetPassword;
 use App\Models\User;
 use App\Repositories\UserRepository;
+use Auth;
 use Carbon\Carbon;
 use Hash;
 use Illuminate\Http\Request;
@@ -71,7 +72,7 @@ class UserService
         if (!UserRepository::update($user, $dataUpdate)) {
             return ['error' => __('message.server_error')];
         }
-
+        Auth::logout();
         return ['success' => __('message.change_password_successfully')];
     }
 
