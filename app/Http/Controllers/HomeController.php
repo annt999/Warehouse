@@ -42,9 +42,8 @@ class HomeController extends Controller
             $monthOrders[$i] = 0;
         }
         foreach ($monthOrdersData as $monthOrder) {
-            $monthOrders[(int)$monthOrder->created_at->format('d')] = $monthOrder->total_money;
+            $monthOrders[(int)$monthOrder->created_at->format('d')] = $monthOrders[(int)$monthOrder->created_at->format('d')] + $monthOrder->total_money;
         }
-
         $topSaleProductsData = Product::query()
             ->select('products.id', 'products.name', \DB::raw('SUM(order_details.quantity) as total_quantity'))
             ->join('order_details', 'products.id', 'order_details.product_id')
