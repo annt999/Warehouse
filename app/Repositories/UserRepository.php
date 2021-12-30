@@ -25,9 +25,9 @@ class UserRepository
         try {
             return User::query()
                 ->where('email', $email)
-                ->where('warehouse_id', auth()->user()->warehouse_id)
                 ->first();
         } catch (\Exception $ex) {
+            Log::error($ex);
             return null;
         }
     }
