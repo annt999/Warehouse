@@ -72,7 +72,8 @@ class CustomerController extends Controller
             ->select('name', 'phone_number', 'id')
             ->where('name', 'LIKE', '%'.$query.'%')
             ->where('warehouse_id', auth()->user()->warehouse_id)
-            ->Where('phone_number', 'LIKE', '%'.$query.'%')
+            ->OrWhere('phone_number', 'LIKE', '%'.$query.'%')
+            ->where('warehouse_id', auth()->user()->warehouse_id)
             ->get();
 
         return response()->json($filter_data);
