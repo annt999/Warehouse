@@ -46,14 +46,15 @@ Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPas
 Route::get('/register', [WarehouseController::class, 'create'])->name('warehouse.create');
 Route::post('/warehouse/store', [WarehouseController::class, 'store'])->name('warehouse.store');
 
-
-Route::group(['middleware' => ['auth', 'user.active', 'warehouse.active']], function () {
-    Route::get('/home', [HomeController::class, 'getHome'])->name('home');
-
+Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['role:' . config('common.role.admin')]], function () {
         Route::get('/warehouses', [WarehouseController::class, 'index'])->name('warehouse.index');
         Route::get('/warehouses/change-status/{id}', [WarehouseController::class, 'changeStatus'])->name('warehouse.change-status');
     });
+});
+
+Route::group(['middleware' => ['auth', 'user.active', 'warehouse.active']], function () {
+    Route::get('/home', [HomeController::class, 'getHome'])->name('home');
 
     //Users
     Route::group(['middleware' => ['user.storekeeper']], function () {
