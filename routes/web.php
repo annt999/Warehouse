@@ -50,6 +50,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['role:' . config('common.role.admin')]], function () {
         Route::get('/warehouses', [WarehouseController::class, 'index'])->name('warehouse.index');
         Route::get('/warehouses/change-status/{id}', [WarehouseController::class, 'changeStatus'])->name('warehouse.change-status');
+
+        //Auth
+        Route::get('/change-password', [UserController::class, 'getChangePassword'])->name('password.change.get');
+        Route::post('/change-password', [UserController::class, 'changePassword'])->name('password.change.post');
     });
 });
 
@@ -63,6 +67,7 @@ Route::group(['middleware' => ['auth', 'user.active', 'warehouse.active']], func
         Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
         Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
         Route::post('/user/update', [UserController::class, 'update'])->name('user.update');
+
     });
 
     //Warehouses
@@ -126,9 +131,5 @@ Route::group(['middleware' => ['auth', 'user.active', 'warehouse.active']], func
     //Report
     Route::get('/report/product', [ReportController::class, 'reportByProduct'])->name('report.product');
 
-
-    //Auth
-    Route::get('/change-password', [UserController::class, 'getChangePassword'])->name('password.change.get');
-    Route::post('/change-password', [UserController::class, 'changePassword'])->name('password.change.post');
 
 });

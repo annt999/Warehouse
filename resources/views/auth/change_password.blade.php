@@ -15,8 +15,8 @@
 <body class="login-page">
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-12 col-sm-6 col-md-3">
-            <form class="form-login change-password-form" action="{!! route('password.change.post') !!}" method="post">
+        <div class="col-12 col-sm-6 col-md-3" style="margin-top: 50px">
+            <form class="form-login change-password-form" action="{!! route('password.change.post') !!}" method="post" style="background-color: white; padding: 15px;">
                 @csrf
                 <div class="form-group">
                     <h3>
