@@ -1,20 +1,20 @@
 <?php return array (
+  'aws/aws-sdk-php-laravel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Aws\\Laravel\\AwsServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'AWS' => 'Aws\\Laravel\\AwsFacade',
+    ),
+  ),
   'barryvdh/laravel-ide-helper' => 
   array (
     'providers' => 
     array (
       0 => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
-    ),
-  ),
-  'brian2694/laravel-toastr' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Brian2694\\Toastr\\ToastrServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Toastr' => 'Brian2694\\Toastr\\Facades\\Toastr',
     ),
   ),
   'facade/ignition' => 
