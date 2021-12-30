@@ -75,7 +75,7 @@ class ProductExport implements
             ]);
         $query = Product::query();
         $query->select('products.*', 'categories.name as category', 'brands.image as brand_image',
-                       'brands.name as brand', 'locations.name as location', 'products.warehouse_id')
+                       'brands.name as brand', 'locations.name as location')
             ->leftJoin('categories', 'categories.id', 'products.category_id')
             ->leftJoin('brands', 'brands.id', 'products.brand_id')
             ->leftJoin('locations', 'locations.id', 'products.location_id');
@@ -108,7 +108,7 @@ class ProductExport implements
             $query->where('products.quantity', '<=', $dataSearch['quantity_max']);
         }
 
-        $query->where('warehouse_id', auth()->user()->warehouse_id);
+        $query->where('products.warehouse_id','=', auth()->user()->warehouse_id);
         $query->orderBy('created_at');
         return $query;
     }
