@@ -23,7 +23,6 @@ class CreateCustomersTable extends Migration
             $table->tinyInteger('gender');
             $table->unsignedBigInteger('warehouse_id');
             $table->timestamps();
-            $table->foreign('warehouse_id')->references('id')->on('warehouses');
         });
     }
 

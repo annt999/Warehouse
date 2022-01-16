@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/change-password', [UserController::class, 'changePassword'])->name('password.change.post');
 });
 
-Route::group(['middleware' => ['auth', 'user.active', 'warehouse.active']], function () {
+Route::group(['middleware' => ['auth', 'role:' . config('common.role.employee') . ',' . config('common.role.storekeeper'),'user.active', 'warehouse.active']], function () {
     Route::get('/home', [HomeController::class, 'getHome'])->name('home');
 
     //Users

@@ -20,7 +20,6 @@ class CreateSuppliersTable extends Migration
             $table->string('phone')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
-            $table->foreign('warehouse_id')->references('id')->on('warehouses');
         });
     }
 

@@ -116,7 +116,7 @@
                             </div>
                             <input hidden id="customer_id">
                         </div>
-                        <input type="text" class="form-control" placeholder="Phone or name" id="search-customer">
+                        <input type="text" class="form-control" name="searchCustomer" autocomplete="off" placeholder="Phone or name" id="search-customer">
                         <p id="customer_error" hidden style="color: red">Please choose a customer</p>
                     </td>
                 </tr>

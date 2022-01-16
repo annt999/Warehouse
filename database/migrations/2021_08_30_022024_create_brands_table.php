@@ -19,7 +19,6 @@ class CreateBrandsTable extends Migration
             $table->text('description')->nullable();
             $table->string('image');
             $table->unsignedBigInteger('warehouse_id');
-            $table->foreign('warehouse_id')->references('id')->on('warehouses');
             $table->timestamps();
         });
     }

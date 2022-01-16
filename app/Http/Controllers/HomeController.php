@@ -33,6 +33,8 @@ class HomeController extends Controller
         $monthOrdersData = Order::query()
             ->select(\DB::raw('created_at'), \DB::raw('SUM(total_money) as total_money'))
             ->where('warehouse_id', auth()->user()->warehouse_id)
+            ->whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('Y'))
             ->groupBy('created_at')
             ->get();
         $monthOrders = [];
@@ -48,6 +50,8 @@ class HomeController extends Controller
             ->select('products.id', 'products.name', \DB::raw('SUM(order_details.quantity) as total_quantity'))
             ->join('order_details', 'products.id', 'order_details.product_id')
             ->where('warehouse_id', auth()->user()->warehouse_id)
+            ->whereMonth('order_details.created_at', date('m'))
+            ->whereYear('order_details.created_at', date('Y'))
             ->groupBy('products.id')
             ->orderBy('total_quantity', 'DESC')
             ->limit(10)->get();

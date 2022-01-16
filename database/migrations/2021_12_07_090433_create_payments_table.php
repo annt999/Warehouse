@@ -20,9 +20,6 @@ class CreatePaymentsTable extends Migration
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('warehouse_id');
             $table->timestamps();
-            $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('created_by')->references('id')->on('users');
-            $table->foreign('warehouse_id')->references('id')->on('warehouses');
         });
     }
 

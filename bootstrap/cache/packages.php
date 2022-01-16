@@ -1,4 +1,15 @@
 <?php return array (
+  'aws/aws-sdk-php-laravel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Aws\\Laravel\\AwsServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'AWS' => 'Aws\\Laravel\\AwsFacade',
+    ),
+  ),
   'barryvdh/laravel-ide-helper' => 
   array (
     'providers' => 
@@ -68,6 +79,17 @@
     'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    ),
+  ),
+  'yoeunes/toastr' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Yoeunes\\Toastr\\ToastrServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Toastr' => 'Yoeunes\\Toastr\\Facades\\Toastr',
     ),
   ),
 );

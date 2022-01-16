@@ -27,13 +27,6 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('warehouse_id');
             $table->timestamps();
-            $table->foreign('warehouse_id')->references('id')->on('warehouses');
-            $table->foreign('brand_id')->references('id')->on('brands');
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('location_id')->references('id')->on('locations');
-
-
-
         });
     }
 

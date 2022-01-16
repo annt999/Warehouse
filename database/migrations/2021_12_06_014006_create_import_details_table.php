@@ -21,8 +21,6 @@ class CreateImportDetailsTable extends Migration
             $table->string('purchase_price');
             $table->string('sale_price');
             $table->timestamps();
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('import_history_id')->references('id')->on('import_history');
 
         });
     }

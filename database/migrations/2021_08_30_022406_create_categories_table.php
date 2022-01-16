@@ -20,8 +20,6 @@ class CreateCategoriesTable extends Migration
             $table->tinyInteger('level');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->unsignedBigInteger('warehouse_id');
-            $table->foreign('parent_id')->references('id')->on('categories');
-            $table->foreign('warehouse_id')->references('id')->on('warehouses');
             $table->timestamps();
         });
     }

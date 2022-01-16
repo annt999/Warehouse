@@ -20,9 +20,6 @@ class CreateImportHistoryTable extends Migration
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('warehouse_id');
             $table->timestamps();
-            $table->foreign('warehouse_id')->references('id')->on('warehouses');
-            $table->foreign('supplier_id')->references('id')->on('suppliers');
-            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 
